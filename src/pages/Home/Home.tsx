@@ -1,7 +1,7 @@
-import "./Home.scss";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
 import Widget from "../../components/Widget/Widget";
+import "./Home.scss";
 
 const Home = () => {
   return (
@@ -15,6 +15,8 @@ const Home = () => {
           <Widget type="earning" />
           <Widget type="balance" />
         </div>
+
+        <div className="charts"></div>
       </div>
     </div>
   );
