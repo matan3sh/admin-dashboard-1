@@ -1,25 +1,31 @@
+import { FC } from "react";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
+import { useWidget } from "./useWidget";
 import "./Widget.scss";
 
-const Widget = () => {
+interface Props {
+  type: "user" | "order" | "earning" | "balance";
+}
+
+const Widget: FC<Props> = ({ type }) => {
+  const { data, amount, diff } = useWidget(type);
+
   return (
     <div className="widget">
       <div className="left">
-        <span className="title">USERS</span>
-        <span className="counter">21312</span>
-        <span className="link">See all users</span>
+        <span className="title">{data?.title}</span>
+        <span className="counter">
+          {data?.isMoney && "$"} {amount}
+        </span>
+        <span className="link">{data?.link}</span>
       </div>
       <div className="right">
         <div className="percentage positive">
           <KeyboardArrowUpIcon />
-          20 %
+          {diff} %
         </div>
 
-        <PersonOutlinedIcon className="icon" />
+        {data?.icon}
       </div>
     </div>
   );
